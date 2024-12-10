@@ -1,0 +1,9 @@
+$printer = Read-Host "Enter printer queue name"
+$server = "\\server.url\$printer"
+
+# Add the printer using the server path and printer name
+Add-Printer -ConnectionName $server
+
+Write-Host "Printer $printer has been added to your computer."
+
+pause
