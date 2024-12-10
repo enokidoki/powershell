@@ -1,0 +1,16 @@
+$server = "#server_url"
+$group = "#group_name"
+
+# Prompt for credentials
+$cred = Import-Clixml -Path "$PSScriptRoot\cred.xml"
+
+# Prompt for member username
+$member = Read-Host "Enter Username to be added to $group"
+
+# Add member to group
+Add-ADGroupMember -Server $server -Credential $cred -Identity $group -Members $member
+
+# Check if the member is in the group
+Get-ADGroupMember -Server $server -Credential $cred -Identity $group | Select-Object Name, SamAccountName | ft
+
+pause
